@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package events;
+
+// Event message definition
+message Event {
+        string chat_session_id = 1;
+            string message = 2;
+                int64 timestamp = 3;
+}
+
+// Metadata event definition for statistics and session tracking
+message MetadataEvent {
+        string chat_session_id = 1;
+            string event_type = 2;
+                int64 timestamp = 3;
+                    map<string, string> data = 4;
+}
+
+// EventBatch message definition
+message EventBatch {
+        repeated Event events = 1;
+            repeated MetadataEvent metadata_events = 2;
+}
