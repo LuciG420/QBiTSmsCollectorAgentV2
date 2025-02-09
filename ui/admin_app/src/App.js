@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const App = () => {
     const [config, setConfig] = useState('');
-        const [response, setResponse] = useState('');
-            const [events, setEvents] = useState([]);
-                const [metadataEvents, setMetadataEvents] = useState([]);
+    const [response, setResponse] = useState('');
+    const [events, setEvents] = useState([]);
+    const [metadataEvents, setMetadataEvents] = useState([]);
 
                     useEffect(() => {
                             // Fetch mock events and metadata events on mount for testing
