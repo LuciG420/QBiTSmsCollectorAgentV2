@@ -31,3 +31,20 @@ google-services.json
 
 # Android Profiling
 *.hprof
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+# Node
+/node_modules
+**/node_modules
+**/build
+**/dist
+**/.DS_Store
+
+# Other
+**/*.log
+**/.env
+**/.idea
+**/.vscode
