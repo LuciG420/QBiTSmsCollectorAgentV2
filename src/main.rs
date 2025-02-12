@@ -1,3 +1,6 @@
+mod enclave;
+
+use enclave::EnclaveSecrets;
 use redis::Commands;
 use tokio::main;
 use rlua::Lua;
@@ -37,6 +40,20 @@ async fn admin_ui_proxy(req: HttpRequest, body: web::Bytes) -> Result<HttpRespon
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+
+    let secrets_store = EnclaveSecrets::new();
+
+    // Store secrets
+    secrets_store.store_secret("access_token", "your_access_token");
+    secrets_store.store_secret("refresh_token", "your_refresh_token");
+
+    // Retrieve secrets
+    let access_token = secrets_store.retrieve_secret("access_token").unwrap();
+    let refresh_token = secrets_store.retrieve_secret("refresh_token").unwrap();
+
+    // Use tokens in your application logic
+    println!("Access Token: {}", access_token);
+    println!("Refresh Token: {}", refresh_token);
 
     let lua = Lua::new();
     let lua_script = fs::read_to_string("event_control.lua").expect("Failed to read Lua script");
